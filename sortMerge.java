@@ -86,7 +86,8 @@ public class sortMerge {
         }
         fix[al] = beg;
         flx[al] = len;
-        if(al < fx.length) {
+        //System.out.println(al + " " + fx.length);
+        if(al + 1< fx.length) {
             fix[al + 1] = -1;
             flx[al + 1] = -1;
         }
