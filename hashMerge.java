@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -17,9 +18,9 @@ public class hashMerge {
     private static int[] y = new int[MAX_LEN];
     private static int[] iy = new int[MAX_LEN];
     private static int[] ly = new int[MAX_LEN];
-    private static HashMap<Integer,int[]> map = new HashMap<>();
+    private static Hashtable<Integer,int[]> tb = new Hashtable<>();
 
-    private static void buildHashfor(int[] y,HashMap<Integer,int[]> map){
+    private static void buildHashfor(int[] y,Hashtable<Integer,int[]> tb){
         int last = -1,beg = 0, len = 0;
         int[] tuple;
 
@@ -29,7 +30,7 @@ public class hashMerge {
                     tuple = new int[2];
                     tuple[0] = beg;
                     tuple[1] = len;
-                    map.put(last,tuple);
+                    tb.put(last,tuple);
                 }
                 last = y[i];
                 beg = i;
@@ -41,7 +42,7 @@ public class hashMerge {
         tuple = new int[2];
         tuple[0] = beg;
         tuple[1] = len;
-        map.put(last,tuple);
+        tb.put(last,tuple);
     }
     public static void main(String[] args){
         Random rand = new Random();
@@ -54,11 +55,11 @@ public class hashMerge {
 
         Arrays.sort(y);
 
-        buildHashfor(y,map);
+        buildHashfor(y,tb);
         System.out.println(LocalDateTime.now());
         for (int i = 0; i < x.length; i++){
             int f = x[i];
-            int[] ind = map.get(f);
+            int[] ind = tb.get(f);
             if(ind != null) {
                 for (int k = ind[0]; k < ind[1]; k++) {
                     int z = x[i] + y[k];
