@@ -6,18 +6,27 @@ import java.util.Random;
  * Created by sanquan.qz on 2017/9/26.
  */
 public class sortMerge {
-    private static final int X_MAX_LEN = 10000000;
-    private static final int MAX_LEN = 20000000;
-    private static int[] x = new int[X_MAX_LEN];
-    private static int[] ix = new int[X_MAX_LEN];
-    private static int[] lx = new int[X_MAX_LEN];
 
-    private static int[] y = new int[MAX_LEN];
-    private static int[] iy = new int[MAX_LEN];
-    private static int[] ly = new int[MAX_LEN];
+    private static int X_MAX_LEN;
+    private static int MAX_LEN;
+    private static int[] x;
+    private static int[] ix;
+    private static int[] lx;
 
+    private static int[] y;
+    private static int[] iy;
+    private static int[] ly;
     public static void main(String[] args){
-        Random rand = new Random();
+        X_MAX_LEN = Integer.parseInt(args[0]);
+        MAX_LEN = Integer.parseInt(args[1]);
+        x = new int[X_MAX_LEN];
+        ix = new int[X_MAX_LEN];
+        lx = new int[X_MAX_LEN];
+
+        y = new int[MAX_LEN];
+        iy = new int[MAX_LEN];
+        ly = new int[MAX_LEN];
+        Random rand = new Random(5);
         for (int i = 0; i < X_MAX_LEN; i++){
             x[i] = rand.nextInt(MAX_LEN);
         }
@@ -39,16 +48,16 @@ public class sortMerge {
 
         int i = 0, j = 0;
         System.out.println(LocalDateTime.now());
-
+        int z;
         for (; i < ix.length && ix[i] != -1 && j < iy.length && iy[j] != -1; ){
             if(x[ix[i]] < y[iy[j]]){
                 i++;
             } else if(x[ix[i]] > y[iy[j]]){
                 j++;
             } else{
-                for (int f = ix[i]; f < lx[i]; f++) {
-                    for (int k = iy[j]; k < ly[j]; k++) {
-                         int z = x[f] + y[k];
+                for (int f = ix[i]; f < ix[i] + lx[i]; f++) {
+                    for (int k = iy[j]; k < iy[j] + ly[j]; k++) {
+                         z = x[f] + y[k];
                     }
                 }
                 i++; j++;
