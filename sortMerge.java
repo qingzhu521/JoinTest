@@ -26,6 +26,7 @@ public class sortMerge {
         y = new int[MAX_LEN];
         iy = new int[MAX_LEN];
         ly = new int[MAX_LEN];
+
         Random rand = new Random(5);
         for (int i = 0; i < X_MAX_LEN; i++){
             x[i] = rand.nextInt(MAX_LEN);
@@ -67,25 +68,27 @@ public class sortMerge {
 
     }
 
-    private static void build_indexandlen_for(int[] x, int[] ix, int[] lx){
+    private static void build_indexandlen_for(int[] fx, int[] fix, int[] flx){
         int last = -1, beg = -1, len = 0, al = 0;
-        for (int i = 0; i < x.length; i++){
-            if(last != x[i]){
+        for (int i = 0; i < fx.length; i++){
+            if(last != fx[i]){
                 if(last != -1){
-                    ix[al] = beg;
-                    lx[al] = len;
+                    fix[al] = beg;
+                    flx[al] = len;
                     al++;
                 }
                 beg = i;
                 len = 1;
-                last = x[i];
+                last = fx[i];
             } else{
                 len++;
             }
         }
-        ix[al] = beg;
-        lx[al] = len;
-        ix[al + 1] = -1;
-        lx[al + 1] = -1;
+        fix[al] = beg;
+        flx[al] = len;
+        if(al < fx.length) {
+            fix[al + 1] = -1;
+            flx[al + 1] = -1;
+        }
     }
 }

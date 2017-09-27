@@ -31,9 +31,9 @@ public class hashMerge {
             } else{
                 len++;
             }
-            idxy[last] = beg;
-            leny[last] = len;
         }
+        idxy[last] = beg;
+        leny[last] = len;
     }
     //private static void buildHashfor(int[] y,Hashtable<Integer,Integer> tb1, Hashtable<Integer,Integer> tb2){
     //    int last = -1,beg = 0, len = 0;
@@ -59,11 +59,11 @@ public class hashMerge {
 
         X_MAX_LEN = Integer.parseInt(args[0]);
         MAX_LEN = Integer.parseInt(args[1]);
-        y = new int[MAX_LEN];
-        x = new int[X_MAX_LEN];
+        y = new int[MAX_LEN + 1];
+        x = new int[X_MAX_LEN + 1];
 
-        int[] idxy = new int[MAX_LEN];
-        int[] leny = new int[MAX_LEN];
+        int[] idxy = new int[MAX_LEN + 1];
+        int[] leny = new int[MAX_LEN + 1];
         Random rand = new Random(5);
         for (int i = 0; i < X_MAX_LEN; i++){
             x[i] = rand.nextInt(MAX_LEN);
